@@ -17,9 +17,17 @@ pmp-sv32/
 │   ├── pmp_check.sv
 │   └── pmp_registers.sv
 └── testbench/
-    └── Self_driving_testbench/
-        ├── pmp_tb.sv      # Top-level testbench
-        └── c.bat          # Windows batch script for simulation
+    ├── Self_driving_testbench/
+    │   ├── pmp_tb.sv      # Top-level testbench that tests the entire pmp module
+    │   ├── c.bat          # Windows batch script for simulation
+    │   └── clean.bat      # Windows batch script for cleaning the simulation files
+    └── Simple_testbenches/
+        ├── tor_tb.sv            # Testbench for tor.sv
+        ├── na4_tb.sv            # Testbench for na4.sv
+        ├── napot_tb.sv          # Testbench for napot.sv
+        ├── addr_check_n_tb.sv   # Testbench for addr_check_n.sv
+        ├── pmp_registers_tb.sv  # Testbench for pmp_registers.sv
+        └── pmp_tb.sv            # Testbench for pmp.sv
 ```
 
 ## Getting Started
