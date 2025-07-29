@@ -117,7 +117,7 @@ module napot_tb();
     size = 2'b01;
     #10;
 
-    // Special cases
+    // Edge cases
     // Case 4
     addr_n = 32'h0; addr = 32'h0 - 1; size = 2'b00; 
     #10;
