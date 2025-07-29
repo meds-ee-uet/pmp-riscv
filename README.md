@@ -1,6 +1,31 @@
-# PMP-SV32
 
-A SystemVerilog implementation of Physical Memory Protection (PMP) for RISC-V SV32. This repository contains RTL modules, definitions, and a self-driving testbench for simulation and verification.
+# PMP
+
+A SystemVerilog implementation of Physical Memory Protection (PMP) for RISC-V. This repository contains RTL modules, definitions, and a self-driving testbench for simulation and verification.
+
+
+
+### PMP Module Overview
+
+
+The `pmp` module is a standalone SystemVerilog implementation of Physical Memory Protection for RISC-V. This implementation features:
+- 16 PMP entries (configurable regions)
+- 4-byte grain size (minimum region size)
+- Configuration and storage of PMP address and configuration registers
+- Address matching for TOR, NA4, and NAPOT regions
+- Permission checks for read, write, and execute accesses
+- Enforcement of privilege modes and lock bits
+
+#### Main Inputs
+- `clock`, `reset`: Standard clock and reset signals
+- `wr_en`, `rw_addr`, `wdata`: Write enable, register address, and data for configuration/address updates
+- `priv_mode`, `size`, `oper`, `addr`: Privilege mode, access size, operation type (read/write/execute), and memory address to check
+
+#### Main Outputs
+- `permission`: Indicates if the requested access is allowed (based on PMP configuration)
+- `rdata`: Data read from PMP configuration/address registers
+
+See `rtl/pmp.sv` for full port list and configuration details.
 
 ## Directory Structure
 
@@ -58,6 +83,7 @@ pmp-sv32/
 ### File Overview
 
 - **defines/cep_define.sv**: Contains enums, types, and constants for PMP configuration and CSRs.
+- **rtl/pmp.sv**: Top-level PMP module implementing all PMP logic.
 - **rtl/**: Contains all RTL modules implementing PMP logic and address matching.
 - **testbench/Self_driving_testbench/pmp_tb.sv**: Self-driving testbench for automated verification.
 - **testbench/Self_driving_testbench/c.bat**: Batch script to compile and simulate the design.
