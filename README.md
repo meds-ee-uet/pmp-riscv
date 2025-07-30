@@ -98,6 +98,9 @@ This project is licensed under the Apache License, Version 2.0. See the [LICENSE
 
 - Muhammad Boota
 - Muhammad Furrukh
+- Umair Ahmad
+- Salman Aslam
+- Waleed Tariq
 
 ## Support
 
