@@ -8,7 +8,7 @@
 // Inputs:
 // - addr       : [31:0] (unsigned) Base address of the memory region to be accessed.
 // - addr_n     : [31:0] (unsigned) Value of the nth PMP address register.
-// - size       : [1:0]             Size of the memory access (00: byte, 01: half-word, 10: word).
+// - size       : [1:0]             Size of the memory access (00: byte, 01: half-word, 11: word).
 //
 // Output:
 // - napot_out  : [0:0]             High if the memory region is supposedly protected by the Nth PMP entry; low otherwise.

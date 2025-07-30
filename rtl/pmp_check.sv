@@ -12,7 +12,7 @@
 // - pmpaddr*_data       : [31:0] (unsigned) Contents of PMP address registers 0-15
 // - pmpcfg*_data        : [31:0]            Contents of PMP configuration registers 0-3
 // - addr                : [31:0] (unsigned) Base address of the memory region to be accessed.
-// - size                : [1:0]             Size of the memory access (00: byte, 01: half-word, 10: word).
+// - size                : [1:0]             Size of the memory access (00: byte, 01: half-word, 11: word).
 // - priv_mode           : [1:0]             Current processor privilege level
 //                                           (00: M-mode, 01: S-mode, 10: U-mode) 
 // - oper                : [1:0]             Operation to be performed on data in the accessed memory region

@@ -10,7 +10,7 @@
 // - addr       : [31:0] (unsigned) Base address of the memory region to be accessed.
 // - addr_n     : [31:0] (unsigned) Value of the nth PMP address register.
 // - addr_n_1   : [31:0] (unsigned) Value of the (n-1)th PMP address register (Used in TOR mode).
-// - size       : [1:0]             Size of the memory access (00: byte, 01: half-word, 10: word).
+// - size       : [1:0]             Size of the memory access (00: byte, 01: half-word, 11: word).
 // - a_n        : [1:0]             Address matching mode for the nth PMP entry 
 //                                  (00: OFF, 01: TOR, 10: NA4, 11: NAPOT).
 //
