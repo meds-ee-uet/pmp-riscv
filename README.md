@@ -16,6 +16,8 @@ The `pmp` module is a standalone SystemVerilog implementation of Physical Memory
 - Permission checks for read, write, and execute accesses
 - Enforcement of privilege modes and lock bits
 
+![alt text](./docs/PMP.png)
+
 #### Main Inputs
 - `clock`, `reset`: Standard clock and reset signals
 - `wr_en`, `rw_addr`, `wdata`: Write enable, register address, and data for configuration/address updates
