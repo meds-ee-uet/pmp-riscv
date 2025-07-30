@@ -28,16 +28,11 @@ module napot (
 logic [5:0]  position;
 logic [31:0] ones, base,offset;
 
-assign ones   = (~(32'b0) << position+1);
+assign ones   = (~(32'b0) << position + 1);
 assign base   = (addr_n & (ones));
 assign offset = (32'h8<<position);
 always_comb begin
-    if ((addr + size) < addr) begin
-        napot_out = 1'b0;
-    end 
-    else begin
-        napot_out = ((((base) + offset-1) >= (addr + size)) && (addr >= (base)));
-    end
+    napot_out = (( (addr + size) <= (base + offset - 1) ) && ( base <= addr ));
 end
 
 

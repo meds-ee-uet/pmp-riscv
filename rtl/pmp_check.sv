@@ -120,7 +120,7 @@ always_comb begin : selction_of_pmpcfg_reg_and_entry
         4'd1:    pmpcfg_selected     = pmpcfg_reg_selected[15:8];
         4'd2:    pmpcfg_selected     = pmpcfg_reg_selected[23:16];
         4'd3:    pmpcfg_selected     = pmpcfg_reg_selected[31:24];
-        default: pmpcfg_reg_selected = 8'b0;
+        default: pmpcfg_selected = 8'b0;
     endcase
 
     if (entry_num != 5'd16) begin
