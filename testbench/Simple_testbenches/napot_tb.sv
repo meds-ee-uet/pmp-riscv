@@ -21,48 +21,24 @@ module napot_tb();
   napot DUT(.*);
 
   initial begin
+    int i;
     // Testing effect of addr and size for given addr_n on the output
-    addr_n = 32'h1234567E; addr = 32'h1234567E - 1; size = 2'b00;
-    #10;
-    size = 2'b01;
-    #10;
-    size = 2'b11;
-    #10;
-    addr = 32'h1234567E; size = 2'b00;
-    #10;
-    size = 2'b01;
-    #10;
-    size = 2'b11;
-    addr = 32'h1234567E + 1; size = 2'b00;
-    #10;
-    size = 2'b01;
-    #10;
-    size = 2'b11;
-    addr = 32'h1234567E + 2; size = 2'b00;
-    #10;
-    size = 2'b01;
-    #10;
-    size = 2'b11;
-    addr = 32'h1234567E + 3; size = 2'b00;
-    #10;
-    size = 2'b01;
-    #10;
-    size = 2'b11;
-    addr = 32'h1234567E + 4; size = 2'b00;
-    #10;
-    size = 2'b01;
-    #10;
-    size = 2'b11;
-    addr = 32'h1234567E + 5; size = 2'b00;
-    #10;
-    size = 2'b01;
-    #10;
-    size = 2'b11;
+    addr_n = 32'h1234567E; addr = 32'h1234567E - 32'h1; 
+    for (i = 0; i < 10; i++) begin
+      size = 2'b00;
+      #10;
+      size = 2'b01;
+      #10;
+      size = 2'b11;
+      #10;
+      addr += 32'h1;
+    end
+
     #10;
 
     // Testing different addr_n
     // Case 1
-    addr_n = 32'h1234567D; addr = (32'h1234567D & (~(32'b1))) - 1; size = 2'b00;
+    addr_n = 32'h1234567D; addr = (32'h1234567D & (~(32'b1))) - 32'h1; size = 2'b00;
     #10;
     size = 2'b01;
     #10;
@@ -70,13 +46,13 @@ module napot_tb();
     #10;
     addr = (32'h1234567D & (~(32'b1)));
     #10;
-    addr = (32'h1234567D & (~(32'b1))) + 15; size = 2'h00;
+    addr = (32'h1234567D & (~(32'b1))) + 32'hF; size = 2'h00;
     #10;
     size = 2'b01;
     #10;
 
     // Case 2
-    addr_n = 32'h1234567B; addr = (32'h1234567B & (~(32'b11))) - 1; size = 2'b00;
+    addr_n = 32'h1234567B; addr = (32'h1234567B & (~(32'b11))) - 32'h1; size = 2'b00;
     #10;
     size = 2'b01;
     #10;
@@ -84,13 +60,13 @@ module napot_tb();
     #10;
     addr = (32'h1234567B & (~(32'b11)));
     #10;
-    addr = (32'h1234567B & (~(32'b11))) + 31; size = 2'h00;
+    addr = (32'h1234567B & (~(32'b11))) + 32'h1F; size = 2'h00;
     #10;
     size = 2'b01;
     #10;
 
     // Case 3
-    addr_n = 32'h12345677; addr = (32'h12345677 & (~(32'b111))) - 1; size = 2'b00;
+    addr_n = 32'h12345677; addr = (32'h12345677 & (~(32'b111))) - 32'h1; size = 2'b00;
     #10;
     size = 2'b01;
     #10;
@@ -98,13 +74,13 @@ module napot_tb();
     #10;
     addr = (32'h12345677 & (~(32'b111)));
     #10;
-    addr = (32'h12345677 & (~(32'b111))) + 63; size = 2'h00;
+    addr = (32'h12345677 & (~(32'b111))) + 32'h3F; size = 2'h00;
     #10;
     size = 2'b01;
     #10;
 
     // Case 4
-    addr_n = 32'h1234566F; addr = (32'h1234566F & (~(32'b1111))) - 1; size = 2'b00;
+    addr_n = 32'h1234566F; addr = (32'h1234566F & (~(32'b1111))) - 32'h1; size = 2'b00;
     #10;
     size = 2'b01;
     #10;
@@ -112,14 +88,14 @@ module napot_tb();
     #10;
     addr = (32'h1234566F & (~(32'b1111)));
     #10;
-    addr = (32'h1234566F & (~(32'b1111))) + 127; size = 2'h00;
+    addr = (32'h1234566F & (~(32'b1111))) + 32'h7F; size = 2'h00;
     #10;
     size = 2'b01;
     #10;
 
     // Edge cases
-    // Case 4
-    addr_n = 32'h0; addr = 32'h0 - 1; size = 2'b00; 
+    // Case 1
+    addr_n = 32'h0; addr = 32'h0 - 32'h1; size = 2'b00; 
     #10;
     size = 2'b01;
     #10;
@@ -127,15 +103,15 @@ module napot_tb();
     #10;
     addr = 32'h0;
     #10;
-    addr = 32'h0 + 7; size = 2'h00;
+    addr = 32'h0 + 32'h7; size = 2'h00;
     #10;
     size = 2'b01;
     #10;
 
-    // Case 5
+    // Case 2
     addr_n = 32'hFFFFFFFF; addr = 32'h0; size = 2'b11;
     #10;
-    addr = 32'hFFFFFFFF - 7; 
+    addr = 32'hFFFFFFFF - 32'h7; 
     #10;
     addr = 32'hFFFFFFFF; size = 2'b00;
     #10;

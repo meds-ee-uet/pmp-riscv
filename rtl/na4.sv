@@ -26,6 +26,6 @@ module na4 (
 );
 
 always_comb begin
-    na4_out = (addr >= (addr_n))  && ((addr + size) <= (addr_n + 3));
+    na4_out = ( (addr <= (addr + size)) && (addr >= (addr_n))  && ((addr + size) <= (addr_n + 3)) );
 end
 endmodule

@@ -20,13 +20,17 @@ module tor_tb();
   tor DUT(.*);
 
   initial begin
+    int i;
+    int size_choices[3];
+    size_choices[0] = 0;
+    size_choices[1] = 1;
+    size_choices[2] = 3;
     // Example region: [addr_n_1, addr_n)
     addr_n_1 = 32'h00001000; addr_n = 32'h00002000;
 
     // Test addresses below, at, and above region with all sizes
-    int i;
-    for (i = 0; i < 4; i++) begin
-      size = i[1:0];
+    for (i = 0; i < 3; i++) begin
+      size = size_choices[i];
       addr = addr_n_1 - 1; #10;
       addr = addr_n_1;     #10;
       addr = addr_n_1 + 1; #10;
@@ -37,8 +41,8 @@ module tor_tb();
 
     // Test another region
     addr_n_1 = 32'h00003000; addr_n = 32'h00004000;
-    for (i = 0; i < 4; i++) begin
-      size = i[1:0];
+    for (i = 0; i < 3; i++) begin
+      size = size_choices[i];
       addr = addr_n_1; #10;
       addr = addr_n_1 + 100; #10;
       addr = addr_n - 1; #10;
@@ -46,14 +50,21 @@ module tor_tb();
     end
 
     // Edge cases
-    addr_n_1 = 32'h0; addr_n = 32'h100;
-    for (i = 0; i < 4; i++) begin
-      size = i[1:0];
-      addr = 32'h0; #10;
-      addr = 32'hFF; #10;
+    addr_n_1 = 32'h0; addr_n = 32'hFFFFFFFF;
+    for (i = 0; i < 3; i++) begin
+      size = size_choices[i];
+      addr = addr_n_1; #10;
       addr = 32'h100; #10;
+      addr = addr_n; #10;
     end
 
+    addr_n_1 = 32'h0; addr_n = 32'h0;
+    for (i = 0; i < 3; i++) begin
+      size = size_choices[i];
+      addr = addr_n_1; #10;
+      addr = 32'h100; #10;
+      addr = 32'hFFFFFFFF; #10;
+    end
     $stop;
   end
 endmodule
